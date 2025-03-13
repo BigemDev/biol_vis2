@@ -1,0 +1,67 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="450"
+        x:Class="projekt2.ComputerWindow"
+        Title="Computer">
+
+    <StackPanel Margin="10">
+        <TextBlock Text="Computer" FontWeight="Bold" Margin="0,0,0,10"/>
+
+        <Grid Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Procesor" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Margin="5,0"/>
+        </Grid>
+
+        <Grid Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Procesor" VerticalAlignment="Center"/>
+            <ComboBox Grid.Column="1" Margin="5,0" x:Name="ProcessorComboBox">
+                <ComboBoxItem>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="AMD Ryzen 5 5600X" Width="200"/>
+                        <TextBlock Text="300 zł"/>
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Intel Core i3-10100" Width="200"/>
+                        <TextBlock Text="150 zł"/>
+                    </StackPanel>
+                </ComboBoxItem>
+            </ComboBox>
+        </Grid>
+
+        <Grid Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Dysk" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Margin="5,0"/>
+            <TextBlock Text="zł" Grid.Column="2" VerticalAlignment="Center"/>
+        </Grid>
+
+        <StackPanel Margin="20,0,0,10">
+            <RadioButton Content="240 GB SSD - 100 zł" GroupName="Disk"/>
+            <RadioButton Content="500 GB SATA - 150 zł" GroupName="Disk"/>
+            <RadioButton Content="1000 GB SATA - 200 zł" GroupName="Disk"/>
+        </StackPanel>
+
+        <TextBlock x:Name="BudgetTextBlock" Text="Reszta : 1000 zł" Margin="0,0,0,10"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="OK" Width="80" Margin="0,0,10,0" Click="OnOKClick"/>
+            <Button Content="ANULUJ" Width="80" Click="OnCancelClick"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

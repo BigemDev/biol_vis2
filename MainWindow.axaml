@@ -1,0 +1,31 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="200"
+        x:Class="projekt2.MainWindow"
+        Title="Kalkulator Zestawów Komputerowych">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Kalkulator Zestawów Komputerowych" Grid.ColumnSpan="3" FontWeight="Bold" Margin="0,0,0,10"/>
+
+        <Button Content="Komputer" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Click="OpenComputerWindow"/>
+        <Button Content="Monitor" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Click="OpenMonitorWindow"/>
+
+        <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">
+            <TextBlock Text="Cena zł" HorizontalAlignment="Center"/>
+            <TextBox x:Name="TotalPriceTextBox" IsReadOnly="True" Width="100" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</Window>
