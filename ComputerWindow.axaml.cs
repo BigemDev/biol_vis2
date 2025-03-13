@@ -6,32 +6,60 @@ namespace projekt2
 {
     public partial class ComputerWindow : Window
     {
-        private int budget = 1000;
-        private TextBlock budgetTextBlock;
+        private const int TotalBudget = 1000;
+        private int processorPrice = 0;
+        private int diskPrice = 0;
+
+        public event EventHandler<int> TotalPriceUpdated;
 
         public ComputerWindow()
         {
             InitializeComponent();
-            budgetTextBlock = this.FindControl<TextBlock>("BudgetTextBlock");
-            UpdateBudgetDisplay();
         }
 
-        public void UpdateBudget(int amount)
+        private void OnProcessorSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            budget -= amount;
-            UpdateBudgetDisplay();
-        }
-
-        private void UpdateBudgetDisplay()
-        {
-            if (budgetTextBlock != null)
+            if (ProcessorComboBox.SelectedItem is ComboBoxItem selectedItem)
             {
-                budgetTextBlock.Text = $"Reszta : {budget} zł";
+                var stackPanel = selectedItem.Content as StackPanel;
+                var priceTextBlock = stackPanel?.Children[1] as TextBlock;
+                if (priceTextBlock != null)
+                {
+                    string priceText = priceTextBlock.Text.Replace(" zł", "");
+                    if (int.TryParse(priceText, out int price))
+                    {
+                        processorPrice = price;
+                        UpdateBudget();
+                    }
+                }
             }
+        }
+
+        private void OnDiskChecked(object sender, RoutedEventArgs e)
+        {
+            if (sender is RadioButton radioButton)
+            {
+                if (int.TryParse(radioButton.Tag?.ToString(), out int price))
+                {
+                    diskPrice = price;
+                    DiskTextBox.Text = price.ToString();
+                    UpdateBudget();
+                }
+            }
+        }
+
+        public void UpdateBudget()
+        {
+            int remainingBudget = TotalBudget - processorPrice - diskPrice;
+            BudgetTextBlock.Text = $"Reszta : {remainingBudget} zł";
+
+            int totalPrice = processorPrice + diskPrice;
+            TotalPriceUpdated?.Invoke(this, totalPrice);
         }
 
         private void OnOKClick(object sender, RoutedEventArgs e)
         {
+            // Implement OK button logic here
             Close();
         }
 

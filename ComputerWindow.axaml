@@ -15,16 +15,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="Procesor" VerticalAlignment="Center"/>
-            <TextBox Grid.Column="1" Margin="5,0"/>
-        </Grid>
-
-        <Grid Margin="0,0,0,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="Procesor" VerticalAlignment="Center"/>
-            <ComboBox Grid.Column="1" Margin="5,0" x:Name="ProcessorComboBox">
+            <ComboBox Grid.Column="1" Margin="5,0" x:Name="ProcessorComboBox" SelectionChanged="OnProcessorSelectionChanged">
                 <ComboBoxItem>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="AMD Ryzen 5 5600X" Width="200"/>
@@ -47,14 +38,14 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="Dysk" VerticalAlignment="Center"/>
-            <TextBox Grid.Column="1" Margin="5,0"/>
+            <TextBox Grid.Column="1" Margin="5,0" x:Name="DiskTextBox" IsReadOnly="True"/>
             <TextBlock Text="zł" Grid.Column="2" VerticalAlignment="Center"/>
         </Grid>
 
         <StackPanel Margin="20,0,0,10">
-            <RadioButton Content="240 GB SSD - 100 zł" GroupName="Disk"/>
-            <RadioButton Content="500 GB SATA - 150 zł" GroupName="Disk"/>
-            <RadioButton Content="1000 GB SATA - 200 zł" GroupName="Disk"/>
+            <RadioButton Content="240 GB SSD - 100 zł" GroupName="Disk" Checked="OnDiskChecked" Tag="100"/>
+            <RadioButton Content="500 GB SATA - 150 zł" GroupName="Disk" Checked="OnDiskChecked" Tag="150"/>
+            <RadioButton Content="1000 GB SATA - 200 zł" GroupName="Disk" Checked="OnDiskChecked" Tag="200"/>
         </StackPanel>
 
         <TextBlock x:Name="BudgetTextBlock" Text="Reszta : 1000 zł" Margin="0,0,0,10"/>

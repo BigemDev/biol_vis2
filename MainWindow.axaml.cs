@@ -26,7 +26,7 @@ namespace projekt2
             var monitorWindow = new MonitorWindow();
             monitorWindow.MonitorSelected += (s, price) =>
             {
-                computerWindow.UpdateBudget(price);
+                computerWindow.UpdateBudget();
             };
             monitorWindow.Show();
         }
