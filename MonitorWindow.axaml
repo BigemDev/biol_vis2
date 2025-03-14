@@ -9,29 +9,29 @@
     <StackPanel Margin="10">
         <TextBlock Text="Monitor" FontWeight="Bold" Margin="0,0,0,10"/>
 
-        <ListBox x:Name="MonitorListView" Height="200" Margin="0,0,0,10">
+        <ListBox x:Name="MonitorListView" SelectionChanged="MonitorSelection" Height="200" Margin="0,0,0,10">
             <ListBoxItem>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Dell P2419H 24&quot;" Width="200"/>
-                    <TextBlock Text="350 zł"/>
+                    <TextBlock Text="350 zł" Tag="350"/>
                 </StackPanel>
             </ListBoxItem>
             <ListBoxItem>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="LG 27GL850-B 27&quot;" Width="200"/>
-                    <TextBlock Text="450 zł"/>
+                    <TextBlock Text="450 zł" Tag="450"/>
                 </StackPanel>
             </ListBoxItem>
             <ListBoxItem>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="ASUS VP228DE 21.5&quot;" Width="200"/>
-                    <TextBlock Text="250 zł"/>
+                    <TextBlock Text="250 zł" Tag="250"/>
                 </StackPanel>
             </ListBoxItem>
             <ListBoxItem>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="AOC 24B2XH 23.8&quot;" Width="200"/>
-                    <TextBlock Text="300 zł"/>
+                    <TextBlock Text="300 zł" Tag="300"/>
                 </StackPanel>
             </ListBoxItem>
         </ListBox>
@@ -42,13 +42,13 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Cena" VerticalAlignment="Center"/>
-            <TextBox Grid.Column="1" Margin="5,0"/>
-            <TextBlock IsEnabled="False" Text="zł" Grid.Column="2" VerticalAlignment="Center"/>
+            <TextBlock  Text="Cena" VerticalAlignment="Center"/>
+            <TextBox x:Name="MonitorPrice" Grid.Column="1" Margin="5,0"/>
+            <TextBlock  IsEnabled="False" Text="zł" Grid.Column="2" VerticalAlignment="Center"/>
         </Grid>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Content="OK" Width="80" Margin="0,0,10,0" Click="OnOKClick"/>
+            <Button Content="OK" Width="80" Margin="0,0,10,0" Click="OnOkClick"/>
             <Button Content="ANULUJ" Width="80" Click="OnCancelClick"/>
         </StackPanel>
     </StackPanel>

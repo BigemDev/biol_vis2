@@ -15,17 +15,17 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="Procesor" VerticalAlignment="Center"/>
-            <ComboBox Grid.Column="1" Margin="5,0" x:Name="ProcessorComboBox" SelectionChanged="OnProcessorSelectionChanged">
+            <ComboBox Grid.Column="1" Margin="5,0" x:Name="ProcessorComboBox" SelectionChanged="ComboBoxSelection">
                 <ComboBoxItem>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="AMD Ryzen 5 5600X" Width="200"/>
-                        <TextBlock Text="300 zł"/>
+                        <TextBlock Text="300 zł" Tag="300"/>
                     </StackPanel>
                 </ComboBoxItem>
                 <ComboBoxItem>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Intel Core i3-10100" Width="200"/>
-                        <TextBlock Text="150 zł"/>
+                        <TextBlock Text="150 zł" Tag="150"/>
                     </StackPanel>
                 </ComboBoxItem>
             </ComboBox>
@@ -51,7 +51,7 @@
         <TextBlock x:Name="BudgetTextBlock" Text="Reszta : 1000 zł" Margin="0,0,0,10"/>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Content="OK" Width="80" Margin="0,0,10,0" Click="OnOKClick"/>
+            <Button Content="OK" Width="80" Margin="0,0,10,0" Click="OnOkClick"/>
             <Button Content="ANULUJ" Width="80" Click="OnCancelClick"/>
         </StackPanel>
     </StackPanel>

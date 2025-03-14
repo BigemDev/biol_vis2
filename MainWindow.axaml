@@ -5,7 +5,7 @@
         mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="200"
         x:Class="projekt2.MainWindow"
         Title="Kalkulator Zestawów Komputerowych">
-
+  
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -22,7 +22,7 @@
 
         <Button Content="Komputer" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Click="OpenComputerWindow"/>
         <Button Content="Monitor" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Click="OpenMonitorWindow"/>
-
+            
         <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">
             <TextBlock Text="Cena zł" HorizontalAlignment="Center"/>
             <TextBox x:Name="TotalPriceTextBox" IsReadOnly="True" Width="100" HorizontalAlignment="Center"/>

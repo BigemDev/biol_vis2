@@ -1,71 +1,63 @@
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using System;
+using Avalonia.Media;
+using System.Linq; 
 
 namespace projekt2
 {
     public partial class ComputerWindow : Window
     {
-        private const int TotalBudget = 1000;
-        private int processorPrice = 0;
-        private int diskPrice = 0;
-
-        public event EventHandler<int> TotalPriceUpdated;
-
-        public ComputerWindow()
+        private MainWindow _mainWindow;
+        public ComputerWindow(MainWindow mainWindow)
         {
             InitializeComponent();
+            _mainWindow = mainWindow;
         }
 
-        private void OnProcessorSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void UpdateBudgetTextBlock()
         {
-            if (ProcessorComboBox.SelectedItem is ComboBoxItem selectedItem)
+            // Reszta : 1000 zł"
+            BudgetTextBlock.Text ="Reszta : " + (1000 - (App._PricesArray[0] + App._PricesArray[1])).ToString() + " zł";
+        }
+
+        private void ComboBoxSelection(object sender, SelectionChangedEventArgs e)
+        {
+            if (ProcessorComboBox.SelectedItem is ComboBoxItem item)    
             {
-                var stackPanel = selectedItem.Content as StackPanel;
-                var priceTextBlock = stackPanel?.Children[1] as TextBlock;
-                if (priceTextBlock != null)
+                if (item.Content is StackPanel stackPanel)
                 {
-                    string priceText = priceTextBlock.Text.Replace(" zł", "");
-                    if (int.TryParse(priceText, out int price))
+                    if (stackPanel.Children[1] is TextBlock priceBlock)
                     {
-                        processorPrice = price;
-                        UpdateBudget();
+                        App._PricesArray[0] = Convert.ToDecimal(priceBlock.Tag);
+                        // priceBlock.Background = Brushes.Red;
+                        UpdateBudgetTextBlock();
                     }
                 }
             }
         }
 
-        private void OnDiskChecked(object sender, RoutedEventArgs e)
-        {
-            if (sender is RadioButton radioButton)
-            {
-                if (int.TryParse(radioButton.Tag?.ToString(), out int price))
-                {
-                    diskPrice = price;
-                    DiskTextBox.Text = price.ToString();
-                    UpdateBudget();
-                }
-            }
-        }
 
-        public void UpdateBudget()
+        
+        private void OnOkClick(object sender, RoutedEventArgs e)
         {
-            int remainingBudget = TotalBudget - processorPrice - diskPrice;
-            BudgetTextBlock.Text = $"Reszta : {remainingBudget} zł";
-
-            int totalPrice = processorPrice + diskPrice;
-            TotalPriceUpdated?.Invoke(this, totalPrice);
-        }
-
-        private void OnOKClick(object sender, RoutedEventArgs e)
-        {
-            // Implement OK button logic here
+            _mainWindow.UpdateTotalPrice(null,null);
             Close();
         }
-
         private void OnCancelClick(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void OnDiskChecked(object sender, RoutedEventArgs e)
+        {
+            if (sender is RadioButton radioButton && radioButton.IsChecked == true)
+            {
+                App._PricesArray[1] = Convert.ToDecimal(radioButton.Tag);
+                DiskTextBox.Text = App._PricesArray[1].ToString() + " zł";
+                UpdateBudgetTextBlock();
+            }
         }
     }
 }

@@ -1,38 +1,34 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using System.Linq; 
 
 namespace projekt2
 {
     public partial class MainWindow : Window
     {
-        private decimal currentBalance;
-        private ComputerWindow computerWindow;
-
         public MainWindow()
         {
             InitializeComponent();
-            computerWindow = new ComputerWindow();
-            currentBalance = 1000;
-            UpdateTotalPriceTextBox();
+            TotalPriceTextBox.Text = App._totalPrice.ToString();
         }
 
-        private void OpenComputerWindow(object sender, RoutedEventArgs e)
+        public void OpenComputerWindow(object sender, RoutedEventArgs e)    
         {
+            var computerWindow = new ComputerWindow(this);
             computerWindow.Show();
         }
-
-        private void OpenMonitorWindow(object sender, RoutedEventArgs e)
+        public void OpenMonitorWindow(object sender, RoutedEventArgs e)
         {
-            var monitorWindow = new MonitorWindow();
-            monitorWindow.MonitorSelected += (s, price) =>
-            {
-                computerWindow.UpdateBudget();
-            };
+            var monitorWindow = new MonitorWindow(this);
             monitorWindow.Show();
         }
-        private void UpdateTotalPriceTextBox()
+        public void UpdateTotalPrice(object sender, RoutedEventArgs e)
         {
-            TotalPriceTextBox.Text = currentBalance.ToString("N2");
+            TotalPriceTextBox.Text = (App._PricesArray[0] + App._PricesArray[1] + App._PricesArray[2]).ToString();   
+        }
+        private void OnCancelClick(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

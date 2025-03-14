@@ -6,6 +6,8 @@ namespace projekt2;
 
 public partial class App : Application
 {
+    public static decimal _totalPrice = 0;
+    public static decimal[] _PricesArray = {0,0,0};
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
